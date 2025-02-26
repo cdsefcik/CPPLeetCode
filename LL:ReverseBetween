@@ -1,0 +1,87 @@
+ //Code:
+ /*
+ Implement the reverseBetween member function for the LinkedList class, which reverses the nodes of the list from the indexes m to n(the positions are 0 - indexed).
+ Note : This linked list class does NOT have a tail which will make this method easier to implement.
+ Function Signature :
+ void reverseBetween(int m, int n)
+ Assumption : You can assume that m and n are not out of bounds.
+
+ Example:
+
+ Consider the following singly linked list :
+ 1 -> 2 -> 3 -> 4 -> 5 -> nullptr
+
+ For the given list, the function ll.reverseBetween(1, 3) should modify the list to be :
+
+ 1 -> 4 -> 3 -> 2 -> 5 -> nullptr
+
+ The sublist from the indexes from 1 to 3 has been reversed.
+ */
+
+ void reverseBetween(int m, int n) {
+     Node* temp = head;
+     Node* pre = nullptr;
+     Node* post = nullptr;
+     Node* beginHead = head;
+     Node* beginTail = head;
+     Node* centerHead = nullptr;
+     Node* centerTail = nullptr;
+     Node* endHead = nullptr;
+     if ((length == 0) || (length == 1)) { return;}
+     if ((m < 0 || n < 0) || (m >= length || n >= length) || (m >= n)) { return;}
+     else {
+         //Begin list iterator.
+         for (int i = 0; i < m; i++) {
+             if (i == (m - 1)) {
+                 beginTail = temp;
+                 temp = temp->next;
+                 beginTail->next = nullptr;
+                 continue;
+             }
+             temp = temp->next;
+         }
+         for (int i = m; i <= n; i++) {
+          
+             if (i == m) {
+               
+                 pre = nullptr;
+                 post = temp->next;
+                 centerTail = temp; //Set the beginning of the reversal list
+                 temp->next = pre;
+                 temp = post;
+                 post = post->next;
+                 pre = centerTail;
+                 
+                 continue;
+             }
+             if ((i > m) && (i < n)) {
+                 temp->next = pre;
+                 //cout << "Step8 " << pre->value<< endl;
+                 pre = temp;
+                 temp = post;
+                 post = post->next;
+                 continue;
+             }
+             if (i == n) {
+                 
+                 centerHead = temp;
+                 temp->next = pre;
+                 temp = post;
+                 endHead = post;
+                 post = post->next;
+                 continue;
+             }
+
+         }
+         if (m == 0) {
+             head = centerHead;
+             centerTail->next = endHead;
+         }
+         else {
+             endHead = temp;
+             beginTail->next = centerHead;
+             centerTail->next = endHead;
+         }
+     }
+
+ }
