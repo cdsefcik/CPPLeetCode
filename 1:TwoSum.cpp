@@ -5,7 +5,7 @@ You may assume that each input would have exactly one solution, and you may not 
 
 You can return the answer in any order.
 
- 
+ Submission Stats: Runtime 78.61% of submissions and Memory 36.06% of submissions
 
 Example 1:
 
