@@ -1,0 +1,69 @@
+/*
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+ beat 17.55% of submissions and 26.96% on memory.
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+Example 3:
+
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome.
+ 
+
+Constraints:
+
+1 <= s.length <= 2 * 105
+s consists only of printable ASCII characters.
+ 
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+4,867,832/9.3M
+Acceptance Rate
+52.2%
+*/
+class Solution {
+public:
+    bool isPalindrome(string s) {
+    
+    for(auto &str: s){
+        str = tolower(str);
+    }
+
+    string converted = "";
+
+    for(int i = 0; i < s.length(); i++){
+        if(s[i] == 'q' || s[i] == 'w' || s[i] == 'e' || s[i] == 'r' || s[i] == 't' || s[i] == 'y' || s[i] == 'u' || 
+        s[i] == 'i' || s[i] == 'o' || s[i] == 'p' || s[i] == 'a' || s[i] == 's' || s[i] == 'd' || s[i] == 'f' ||
+        s[i] == 'g' || s[i] == 'h' || s[i] == 'j' || s[i] == 'k' || s[i] == 'l' || s[i] == 'z' || s[i] == 'x' ||
+        s[i] == 'c' || s[i] == 'v' || s[i] == 'b' || s[i] == 'n' || s[i] == 'm' || s[i] == '0' || s[i] == '1' ||
+        s[i] == '2' || s[i] == '3' || s[i] == '4' || s[i] == '5' || s[i] == '6' || s[i] == '7' || s[i] == '8' || s[i] == '9'
+        ){
+        converted += s[i];
+        }
+    }
+
+    for(int i = 0, j = converted.size() - 1; i < converted.size() / 2; i++, j--){
+        if(converted[i] != converted[j]){
+        return false;
+        }
+    }
+
+    return true;    
+    }
+};
